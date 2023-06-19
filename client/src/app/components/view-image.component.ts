@@ -12,7 +12,9 @@ export class ViewImageComponent implements OnInit, OnDestroy{
 
     postId= "";
     param$! : Subscription;
-    imageData: any;
+    imageUrl = "";
+    title = "";
+    complain = "";
 
 
   constructor(private actRoute: ActivatedRoute, 
@@ -26,7 +28,9 @@ ngOnInit(): void {
       this.postId = params['postId'];
       let r = await this.fileUpSvc.getImage(this.postId);
       console.log(r);
-      this.imageData = r.image;
+      this.imageUrl = r.imageUrl;
+      this.title = r.title;
+      this.complain = r.complain;
       
     }
   );

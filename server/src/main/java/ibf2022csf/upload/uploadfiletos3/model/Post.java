@@ -8,7 +8,8 @@ public class Post implements Serializable{
     private String complain;
     private String title;
     // potential problem??
-    private byte[] image;
+    // private byte[] image;
+    private String imageUrl;
     private Integer postId;
 
     public String getComplain() {
@@ -23,17 +24,23 @@ public class Post implements Serializable{
     public void setTitle(String title) {
         this.title = title;
     }
-    public byte[] getImage() {
-        return image;
-    }
-    public void setImage(byte[] image) {
-        this.image = image;
-    }
+    // public byte[] getImage() {
+    //     return image;
+    // }
+    // public void setImage(byte[] image) {
+    //     this.image = image;
+    // }
     public Integer getPostId() {
         return postId;
     }
     public void setPostId(Integer postId) {
         this.postId = postId;
+    }
+     public String getImageUrl() {
+        return imageUrl;
+    }
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     public static Post populate(ResultSet rs) throws SQLException{
@@ -41,9 +48,10 @@ public class Post implements Serializable{
         p.setPostId(rs.getInt("id"));
         p.setComplain(rs.getString("complain"));
         p.setTitle(rs.getString("title"));
-        p.setImage(rs.getBytes("blobc"));
+        p.setImageUrl(rs.getString("imageUrl"));
         return p;
     }
+   
     
 
 }

@@ -1,4 +1,6 @@
 export interface UploadResult { 
     imageKey: string;
-    image: string;
+    imageUrl: string;
+    title: string;
+    complain: string;
 }

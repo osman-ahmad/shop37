@@ -19,13 +19,51 @@ import ibf2022csf.upload.uploadfiletos3.model.Post;
 
 
 
+// @Repository
+// public class FileUploadRepository {
+//     private static final String INSERT_POST_SQL
+//             = "INSERT INTO posts( blobc, title, complain) VALUES (?,?,?)";
+    
+//     private static final String SQL_GET_POST_BY_POSTID
+//             = "select id , title, complain, blobc from posts where id=?";
+    
+//     @Autowired
+//     private DataSource dataSource;
+    
+//     @Autowired
+//     private JdbcTemplate template;
+
+//     public void upload(MultipartFile file, String title,
+//         String complain) throws SQLException, IOException{
+//         try(Connection con = dataSource.getConnection(); 
+//             PreparedStatement prstmt = con.prepareStatement(INSERT_POST_SQL)){
+//             InputStream is = file.getInputStream();
+//             prstmt.setBinaryStream(1, is, file.getSize());
+//             prstmt.setString(2, title);
+//             prstmt.setString(3, complain);
+//             prstmt.executeUpdate();
+//         }
+//     }
+
+//     public Optional<Post> getPostById(Integer postId){
+//         return template.query(
+//             SQL_GET_POST_BY_POSTID,
+//             (ResultSet rs)->{
+//                 if(!rs.next())
+//                     return Optional.empty();
+//                 final Post post = Post.populate(rs);
+//                 return Optional.of(post);
+//             }
+//         , postId);
+//     }
+// }
 @Repository
 public class FileUploadRepository {
     private static final String INSERT_POST_SQL
-            = "INSERT INTO posts( blobc, title, complain) VALUES (?,?,?)";
+            = "INSERT INTO posts(title, complain, imageUrl) VALUES (?,?,?)";
     
     private static final String SQL_GET_POST_BY_POSTID
-            = "select id , title, complain, blobc from posts where id=?";
+            = "select id , title, complain, imageUrl from posts where id=?";
     
     @Autowired
     private DataSource dataSource;
@@ -33,14 +71,15 @@ public class FileUploadRepository {
     @Autowired
     private JdbcTemplate template;
 
-    public void upload(MultipartFile file, String title,
-        String complain) throws SQLException, IOException{
+    public void upload(String title,
+        String complain, String imageUrl) throws SQLException, IOException{
         try(Connection con = dataSource.getConnection(); 
             PreparedStatement prstmt = con.prepareStatement(INSERT_POST_SQL)){
-            InputStream is = file.getInputStream();
-            prstmt.setBinaryStream(1, is, file.getSize());
-            prstmt.setString(2, title);
-            prstmt.setString(3, complain);
+            // InputStream is = file.getInputStream();
+            // prstmt.setBinaryStream(1, is, file.getSize());
+            prstmt.setString(1, title);
+            prstmt.setString(2, complain);
+            prstmt.setString(3, imageUrl);
             prstmt.executeUpdate();
         }
     }
