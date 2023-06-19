@@ -11,12 +11,15 @@ import { InsertComponent } from './components/insert.component';
 import { MaterialModule } from './material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { ViewImageComponent } from './components/view-image.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     UploadComponent,
-    InsertComponent
+    InsertComponent,
+    ViewImageComponent
+
   ],
   imports: [
     BrowserModule,
