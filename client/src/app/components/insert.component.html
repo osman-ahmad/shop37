@@ -1,0 +1,19 @@
+<mat-card>
+    <mat-card-content fxLayout="column" fxLayoutAlign="center">
+        <!-- for multiple images -->
+        <div *ngFor="let p of pics">
+            <img [src]="p" width="150" height="150"/>
+        </div>
+        <!-- for single image only -->
+        <!-- <div *ngIf="pic">
+            <img [src]="pic" width="150" height="150" />
+        </div> -->
+        <div>
+          <input type="file" accept="image/*" (change)="handleFileInput($event)" />
+        </div>
+        <!-- <div>
+          <button mat-raised-button color="primary" type="button" (click)="snap()">Snap</button>
+        </div> -->
+           
+    </mat-card-content>
+</mat-card>

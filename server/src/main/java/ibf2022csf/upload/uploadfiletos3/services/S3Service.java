@@ -27,13 +27,13 @@ public class S3Service {
     private String bucketName;
 
     //, (MultipartFile file, String title, String complain)
-    public String upload(MultipartFile file) throws IOException{
+    public String upload(MultipartFile file, String title, String complain) throws IOException{
         Map<String, String> userData = new HashMap<>();
         userData.put("name", "Kenneth");
         userData.put("uploadDateTime", LocalDateTime.now().toString());
         userData.put("originalFilename", file.getOriginalFilename());
-        // userData.put("title", title);
-        // userData.put("complain", complain);
+        userData.put("title", title);
+        userData.put("complain", complain);
         
         ObjectMetadata metadata = new ObjectMetadata();
         metadata.setContentType(file.getContentType());
